@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+* {
+  font-family: Patrick Hand;
+}
+
+#title{
+    font-size:26px;
+    margin-bottom:20px;
+}
+#app-container{
+    border-style: solid;
+    border-width: thin;
+    margin:40px;
+}
+#inner-container{
+    padding:20px;
+}
+#search{
+    outline:none;
+    border:solid thin rgba(0, 0, 0);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.image{
+    border-style: solid;
+    border-width:thin;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2px;
+}
+
+img{
+    width:150px;
+    height:150px;
+}
+
+#bottom-container{
+    display:inline-block;
+    margin-top: 20px;
+}
+
+#images{
+    display: flex;
+    gap:50px;
+    flex-wrap: wrap;
+}
+
+.image{
+    width:150px;
+}
+
+.image-title{
+    font-size:17px;
+    font-weight: bold;
+    text-decoration: underline;
+    width:100%;
+    text-align: center;
+    word-wrap: break-word;
+}
