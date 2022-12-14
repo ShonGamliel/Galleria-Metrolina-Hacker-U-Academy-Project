@@ -110,28 +110,23 @@ function showAllImages() {
   }
 }
 
-function updateImages(e, iskeypress) {
-  let searchInput = document.getElementById("search");
-  let value = "";
+function updateImages(e) {
   document.getElementById("images").innerHTML = "";
-  if (iskeypress == true) {
-    if (searchInput.value.length != 0) {
-      filterImages(
-        (searchInput.value + (e.code != "Enter" ? e.key : "")).toLowerCase()
-      );
-    } else {
-      showAllImages();
-    }
-  } else if (iskeypress == false && e.code == "Backspace") {
-    if (searchInput.value.slice(0, -1).length != 0) {
-      filterImages(searchInput.value.slice(0, -1));
-    } else {
-      showAllImages();
-    }
+  let value = "";
+  if (e.key.length == 1) {
+    value = e.target.value + e.key;
+  } else if (e.key == "Backspace") {
+    value = e.target.value.slice(0, -1);
+  }
+  if (value.length == 0) {
+    showAllImages();
+  } else {
+    filterImages(value);
   }
 }
 
 function filterImages(search_key) {
+  document.getElementById("images").innerHTML = "";
   let imgs = images.filter((img) =>
     img.imgname.toLowerCase().includes(search_key)
   );
@@ -139,13 +134,17 @@ function filterImages(search_key) {
     document.getElementById("images").innerHTML =
       document.getElementById("images").innerHTML +
       `
-  <div class="image">
-  <img src="${image.url}" alt="">
-  <div class="image-title">${image.imgname}</div>
-  <div class="image-creator">${image.creator}</div>
-  <div class="image-price">$${image.price}</div>
-  ${image.available == true ? "" : '<div style="color:red">Not available</div>'}
-  </div>
-`;
+        <div class="image">
+        <img src="${image.url}" alt="">
+        <div class="image-title">${image.imgname}</div>
+        <div class="image-creator">${image.creator}</div>
+        <div class="image-price">$${image.price}</div>
+        ${
+          image.available == true
+            ? ""
+            : '<div style="color:red">Not available</div>'
+        }
+        </div>
+      `;
   }
 }
